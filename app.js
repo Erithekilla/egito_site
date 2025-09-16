@@ -26,5 +26,3 @@ bnt1.addEventListener('click',()=>{resposta(1)})
 bnt2.addEventListener('click',()=>{resposta(2)})
 bnt3.addEventListener('click',()=>{resposta(3)})
 bnt4.addEventListener('click',()=>{resposta(4)})
-
-//pessoa que faz programa :D
