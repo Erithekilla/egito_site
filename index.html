@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template de Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('img/piramide.jpg');
+            background-repeat: repeat;
+            background-position: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+        }
+        .question-block {
+            margin-bottom: 20px;
+        }
+        .question-block h3 {
+            margin-bottom: 10px;
+        }
+        .question-block label {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .question-block label:hover {
+            background-color: #ddd;
+        }
+        .question-block input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Quiz de 5 perguntas</h1>
+    <form id="quizForm">
+
+        <div class="question-block">
+            <h3>1. Quem estava no topo da pirâmide social do Egito Antigo?</h3>
+            <label><input type="radio" name="q1" value="Escribas"> Escribas</label>
+            <label><input type="radio" name="q1" value="Camponeses"> Camponeses</label>
+            <label><input type="radio" name="q1" value="Faraó"> Faraó</label>
+            <label><input type="radio" name="q1" value="Sacerdotes"> Sacerdotes</label>
+        </div>
+
+        <div class="question-block">
+            <h3>2. Qual deus egípcio era representado com cabeça de chacal e associado à mumificação?</h3>
+            <label><input type="radio" name="q2" value="Hórus"> Hórus</label>
+            <label><input type="radio" name="q2" value="Anúbis"> Anúbis</label>
+            <label><input type="radio" name="q2" value="Osíris"> Osíris</label>
+            <label><input type="radio" name="q2" value="Seth"> Seth</label>
+        </div>
+
+        <div class="question-block">
+            <h3>3. Qual é a maior pirâmide de Gizé?</h3>
+            <label><input type="radio" name="q3" value="Miquerinos"> Miquerinos</label>
+            <label><input type="radio" name="q3" value="Quéfren"> Quéfren</label>
+            <label><input type="radio" name="q3" value="Quéops"> Quéops</label>
+            <label><input type="radio" name="q3" value="Saqqara"> Saqqara</label>
+        </div>
+
+        <div class="question-block">
+            <h3>4. O que os egípcios chamavam de “presente do Nilo”?</h3>
+            <label><input type="radio" name="q4" value="Os metais preciosos"> Os metais preciosos</label>
+            <label><input type="radio" name="q4" value="A fertilidade do solo após as cheias Agricultura"> A fertilidade do solo após as enchentes/cheias</label>
+            <label><input type="radio" name="q4" value="Os papiros usados para escrita"> Os papiros usados para escrita</label>
+            <label><input type="radio" name="q4" value="As pedras para construção"> As pedras para construção</label>
+        </div>
+
+        <div class="question-block">
+            <h3>5. Sobre as margens do rio Nilo, oq os egípcios plantavam?</h3>
+            <label><input type="radio" name="q5" value="café, algodão e açúcar"> café, algodão e açúcar</label>
+            <label><input type="radio" name="q5" value="trigo, cevada e linho"> trigo, cevada e linho</label>
+            <label><input type="radio" name="q5" value="alface, cenoura e beterraba"> alface, cenoura e beterraba</label>
+            <label><input type="radio" name="q5" value="trigo, alfazema e soja"> trigo, alfazema e soja</label>
+        </div>
+
+        <button type="button" onclick="submitQuiz()">Finalizar Quiz</button>
+    </form>
+    <p id="result"></p>
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: 'Faraó',
+        q2: 'Anúbis',
+        q3: 'Quéops',
+        q4: 'A fertilidade do solo após as cheias Agricultura',
+        q5: 'trigo, cevada e linho'
+    };
+
+    function submitQuiz() {
+        let score = 0;
+        const form = document.getElementById('quizForm');
+        const resultElement = document.getElementById('result');
+
+        for (const questionName in correctAnswers) {
+            const selectedOption = form.elements[questionName].value;
+            if (selectedOption === correctAnswers[questionName]) {
+                score++;
+            }
+        }
+
+        resultElement.textContent = `Você acertou ${score} de 5 perguntas.`;
+        resultElement.style.color = score > 4 ? 'green' : 'red';
+    }
+</script>
+
+</body>
+</html>
